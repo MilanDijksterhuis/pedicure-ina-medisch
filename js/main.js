@@ -18,6 +18,25 @@
     });
   }
 
+  // Accordion behandelingen
+  document.querySelectorAll('.accordion-knop').forEach(knop => {
+    knop.addEventListener('click', () => {
+      const item   = knop.closest('.accordion-item');
+      const isOpen = item.classList.contains('is-open');
+
+      // Sluit andere open items
+      document.querySelectorAll('.accordion-item.is-open').forEach(open => {
+        open.classList.remove('is-open');
+        open.querySelector('.accordion-knop').setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isOpen) {
+        item.classList.add('is-open');
+        knop.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
   // Scroll-reveal
   const minderBeweging = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

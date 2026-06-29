@@ -311,6 +311,15 @@ h3 { font-size: clamp(1rem, 1.5vw, 1.2rem); font-weight: 700; }
    Behandelingen
    ============================================================ */
 
+.sectie-label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--roze);
+}
+
 .behandelingen {
   background: var(--creme);
   padding-block: clamp(3rem, 6vw, 5.5rem);
@@ -319,69 +328,119 @@ h3 { font-size: clamp(1rem, 1.5vw, 1.2rem); font-weight: 700; }
 .behandelingen__top {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
-  margin-bottom: 3.5rem;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  align-items: end;
 }
 
 .behandelingen__intro-kop {
-  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
 
 .behandelingen__intro-tekst {
-  max-width: 480px;
   color: var(--tekst-zacht);
-}
-
-.behandelingen__lijst {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
-  border-top: 1px solid rgba(46,32,40,0.12);
-}
-
-.behandeling-rij {
-  display: grid;
-  grid-template-columns: 2.5rem 1fr;
-  gap: 1.25rem 1.5rem;
-  align-items: baseline;
-  padding: 1.5rem 0;
-  border-bottom: 1px solid rgba(46,32,40,0.12);
-  transition: background 200ms;
-}
-
-.behandeling-rij:hover {
-  background: var(--creme-donker);
-  margin-inline: -1rem;
-  padding-inline: 1rem;
-}
-
-.behandeling-nr {
-  font-family: var(--kop);
-  font-size: 0.8rem;
-  color: var(--roze);
-  font-weight: 700;
-  padding-top: 0.1rem;
-}
-
-.behandeling-inhoud h3 {
   font-size: 1.05rem;
-  margin-bottom: 0.35rem;
-}
-
-.behandeling-inhoud p {
-  font-size: 0.9rem;
-  color: var(--tekst-zacht);
+  line-height: 1.8;
   margin-bottom: 0;
+  padding-bottom: 0.4rem;
 }
 
 @media (min-width: 860px) {
   .behandelingen__top {
     grid-template-columns: 1fr 1fr;
-    align-items: end;
-    gap: 2rem;
-    margin-bottom: 3rem;
+    gap: 3rem;
+    margin-bottom: 3.5rem;
   }
 }
+
+.behandelingen__lijst {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+/* Accordion */
+.accordion-item {
+  background: var(--wit);
+  border: 1px solid rgba(46,32,40,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: box-shadow 200ms;
+}
+
+.accordion-item:hover {
+  box-shadow: 0 4px 16px rgba(46,32,40,0.08);
+}
+
+.accordion-item.is-open {
+  border-color: var(--roze-licht);
+  box-shadow: 0 4px 20px rgba(184,137,154,0.15);
+}
+
+.accordion-knop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1.1rem 1.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--kop);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--tekst);
+  gap: 1rem;
+  transition: color 200ms;
+}
+
+.accordion-knop:hover {
+  color: var(--roze-donker);
+}
+
+.accordion-item.is-open .accordion-knop {
+  color: var(--roze-donker);
+}
+
+.accordion-pijl {
+  flex-shrink: 0;
+  color: var(--roze);
+  transition: transform 300ms ease;
+}
+
+.accordion-item.is-open .accordion-pijl {
+  transform: rotate(180deg);
+}
+
+.accordion-inhoud {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 320ms ease, padding-bottom 320ms ease;
+  overflow: hidden;
+  padding: 0 1.4rem;
+  font-size: 0.95rem;
+  color: var(--tekst-zacht);
+  line-height: 1.7;
+}
+
+.accordion-inhoud__binnen {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.accordion-item.is-open .accordion-inhoud {
+  grid-template-rows: 1fr;
+  padding-bottom: 1.2rem;
+}
+
+.accordion-inhoud p {
+  margin-bottom: 0;
+  padding-top: 0.1rem;
+}
+
 
 /* ============================================================
    Over Ina
